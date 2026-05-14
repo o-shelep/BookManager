@@ -18,15 +18,15 @@ export default function Register() {
     e.preventDefault();
     setError('');
     if (!username.trim() || !password.trim() || !confirm.trim()) {
-      setError('Please fill in all fields.');
+      setError('Будь ласка, заповніть усі поля.');
       return;
     }
     if (password !== confirm) {
-      setError('Passwords do not match.');
+      setError('Паролі не співпадають.');
       return;
     }
     if (password.length < 4) {
-      setError('Password must be at least 4 characters.');
+      setError('Пароль має містити мінімум 4 символи.');
       return;
     }
     setLoading(true);
@@ -34,7 +34,7 @@ export default function Register() {
       await register(username.trim(), password);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed. Please try again.');
+      setError(err.response?.data?.message || 'Шось пішло не так. А ну ще раз попробуйте.');
     } finally {
       setLoading(false);
     }
@@ -48,20 +48,20 @@ export default function Register() {
             <Library size={36} className="deco-icon" />
             <h1>BookShelf</h1>
           </div>
-          <p>Join thousands of readers who track and organize their reading journey.</p>
+          <p>Приєднуйтесь до тисяч читачів, які відстежують та організовують свою читацьку подорож тут.</p>
         </div>
         <div className="auth-page__features">
           <div className="auth-page__feature">
             <Target size={20} className="feature-icon" />
-            <span className="feature-text">Set reading goals for yourself</span>
+            <span className="feature-text">Встановлюйте свої читацькі цілі</span>
           </div>
           <div className="auth-page__feature">
             <BarChart2 size={20} className="feature-icon" />
-            <span className="feature-text">See your reading statistics</span>
+            <span className="feature-text">Переглядайте свою статистику</span>
           </div>
           <div className="auth-page__feature">
             <Bookmark size={20} className="feature-icon" />
-            <span className="feature-text">Never lose track of a book again</span>
+            <span className="feature-text">Ніколи більше не втрачайте свій прогрес</span>
           </div>
         </div>
       </div>
@@ -69,19 +69,19 @@ export default function Register() {
       <div className="auth-page__right">
         <div className="auth-page__form-container">
           <div className="auth-page__form-header">
-            <h2>Create account</h2>
-            <p>Start your reading journey today</p>
+            <h2>Створити акаунт</h2>
+            <p>Розпочніть свій читацький шлях вже сьогодні</p>
           </div>
 
           {error && <div className="auth-page__error">{error}</div>}
 
           <form className="auth-page__form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">Ім'я користувача</label>
               <input
                 id="username"
                 type="text"
-                placeholder="Choose a username"
+                placeholder="Введіть ім'я користувача"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 autoComplete="username"
@@ -90,11 +90,11 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Пароль</label>
               <input
                 id="password"
                 type="password"
-                placeholder="Create a password"
+                placeholder="Придумайте пароль"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoComplete="new-password"
@@ -102,11 +102,11 @@ export default function Register() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="confirm">Confirm Password</label>
+              <label htmlFor="confirm">Підтвердження пароля</label>
               <input
                 id="confirm"
                 type="password"
-                placeholder="Repeat your password"
+                placeholder="Повторіть свій пароль"
                 value={confirm}
                 onChange={e => setConfirm(e.target.value)}
                 autoComplete="new-password"
@@ -118,13 +118,13 @@ export default function Register() {
               className="auth-page__submit"
               disabled={loading}
             >
-              {loading ? 'Creating account…' : 'Create Account'}
+              {loading ? 'Створємо акаунт…' : 'Створити акаунт'}
             </button>
           </form>
 
           <div className="auth-page__footer">
-            Already have an account?{' '}
-            <Link to="/login">Sign in</Link>
+            Уже зареєстровані?{' '}
+            <Link to="/login">Увійти</Link>
           </div>
         </div>
       </div>
