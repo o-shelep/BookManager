@@ -7,6 +7,7 @@ import Books from './pages/Books/Books';
 import Sidebar from './components/Sidebar/Sidebar';
 import Authors from './pages/Authors/Authors';
 import Genres from './pages/Genres/Genres';
+import Profile from './pages/Profile/Profile';
 import './styles/global.scss';
 
 function ProtectedLayout() {
@@ -31,6 +32,7 @@ export default function App() {
             <Route path='/' element={<Books />} />
             <Route path='/authors' element={<Authors />} />
             <Route path='/genres' element={<Genres />} />
+            <Route path='/profile' element={<Profile />} />
           </Route>
         </Route>
       </Routes>
