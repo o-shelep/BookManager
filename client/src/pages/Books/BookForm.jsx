@@ -47,19 +47,19 @@ export default function BookForm({
       </div>
 
       <div className="form-group">
-        <label>Title *</label>
+        <label>Назва</label>
         <input type="text" placeholder="Назва книжки" value={form.title}
           onChange={e => onChange('title', e.target.value)} autoFocus />
       </div>
 
       <div className="form-group">
-        <label>Author</label>
+        <label>Автор</label>
         <input type="text" placeholder="Ім'я автора" value={form.author_name}
           onChange={e => onChange('author_name', e.target.value)} />
       </div>
 
       <div className="form-group">
-        <label>Genre</label>
+        <label>Жанр</label>
         <select value={form.genre} onChange={e => onChange('genre', e.target.value)}>
           <option value="">— Немає жанру —</option>
           {genres.map(g => <option key={g.id} value={g.name}>{g.name}</option>)}
@@ -67,7 +67,7 @@ export default function BookForm({
       </div>
 
       <div className="form-group">
-        <label>Status</label>
+        <label>Статус</label>
         <select value={form.status} onChange={e => onStatusChange(e.target.value)}>
           <option value="onPlan">У планах</option>
           <option value="inProgress">В процесі</option>

@@ -3,6 +3,8 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import Books from './pages/Books/Books';
+import Sidebar from './components/Sidebar/Sidebar'
 import './styles/global.scss';
 
 function ProtectedLayout() {
@@ -22,6 +24,11 @@ export default function App() {
       <Routes>
          <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedLayout />}>
+            <Route path='/' element={<Books />} />
+          </Route>
+        </Route>
       </Routes>
     </AuthProvider>
   );
