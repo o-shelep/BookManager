@@ -1,37 +1,55 @@
 CREATE DATABASE IF NOT EXISTS books_manager CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE books_manager;
 
-DROP TABLE IF EXISTS books,
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
+DROP TABLE IF EXISTS genres;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(100) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE genres (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE authors (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    full_name VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE books (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     author_name VARCHAR(255) DEFAULT NULL,
     genre ENUM(
-        'Fantasy',
-        'Horror',
-        'Romance',
-        'Classic',
-        'Science Fiction',
-        'Mystery',
-        'Thriller',
-        'Historical Fiction',
-        'Biography',
-        'Self-Help',
-        'Other'
+        'Фентезі',
+        'Жахи',
+        'Романтика',
+        'Класика',
+        'Наукова фантастика',
+        'Детектив',
+        'Трилер',
+        'Історична проза',
+        'Біографія',
+        'Саморозвиток',
+        'Інше'
     ) DEFAULT NULL,
     status ENUM('onPlan', 'inProgress', 'read') NOT NULL DEFAULT 'onPlan',
     rating TINYINT UNSIGNED DEFAULT NULL,
     cover_image VARCHAR(255) DEFAULT NULL,
+    note TEXT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT chk_rating CHECK (rating is NULL or rating BETWEEN 1 AND 5)
+    CONSTRAINT chk_rating CHECK (rating IS NULL OR rating BETWEEN 1 AND 5),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
