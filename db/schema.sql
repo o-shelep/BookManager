@@ -15,7 +15,10 @@ CREATE TABLE users (
 
 CREATE TABLE genres (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL UNIQUE
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    UNIQUE KEY uq_genre_per_user (user_id, name),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE authors (
@@ -30,19 +33,7 @@ CREATE TABLE books (
     user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     author_name VARCHAR(255) DEFAULT NULL,
-    genre ENUM(
-        'Фентезі',
-        'Жахи',
-        'Романтика',
-        'Класика',
-        'Наукова фантастика',
-        'Детектив',
-        'Трилер',
-        'Історична проза',
-        'Біографія',
-        'Саморозвиток',
-        'Інше'
-    ) DEFAULT NULL,
+    genre VARCHAR(100) DEFAULT NULL,
     status ENUM('onPlan', 'inProgress', 'read') NOT NULL DEFAULT 'onPlan',
     rating TINYINT UNSIGNED DEFAULT NULL,
     cover_image VARCHAR(255) DEFAULT NULL,

@@ -24,7 +24,7 @@ export default function Login() {
       await login(username.trim(), password);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Неправильний пароль або пошта. Будь ласка, спробуйте ще раз.');
+      setError(err.response?.data?.message || "Неправильний пароль або ім'я користувача. Будь ласка, спробуйте ще раз.");
     } finally {
       setLoading(false);
     }

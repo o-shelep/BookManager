@@ -132,7 +132,7 @@ export default function Profile() {
                 type="password"
                 value={form.newPassword}
                 onChange={(e) => handleChange("newPassword", e.target.value)}
-                placeholder="Нічого не вписуйте, щоб залишити поточний пароль"
+                placeholder="Введіть новий пароль"
                 autoComplete="new-password"
               />
             </div>

@@ -188,7 +188,7 @@ export default function Books() {
       )}
 
       <Modal isOpen={modalOpen} onClose={closeModal}
-        title={editBook ? 'Edit Book' : 'Add New Book'}>
+        title={editBook ? 'Редагувати книжку' : 'Додати книжку'}>
         <BookForm
           form={form}
           genres={genres}
